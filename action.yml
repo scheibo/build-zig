@@ -64,11 +64,18 @@ runs:
       shell: bash
       run: |
         cd ..
-        git clone --depth=1 https://github.com/ziglang/zig.git
+        git clone https://github.com/ziglang/zig.git
         cd zig
         git submodule update --init
 
-    - name: Apply patch
+    - name: Apply version patch
+      if: steps.cache-zig.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd ../zig
+        patch -p1 < $GITHUB_ACTION_PATH/version.patch
+
+    - name: Apply input patch
       if: steps.cache-zig.outputs.cache-hit != 'true' && inputs.patch-file != ''
       shell: bash
       run: |
@@ -98,3 +105,8 @@ runs:
         chmod +x ${ZIG_DIR}/bin/zig
         echo "${ZIG_DIR}/bin" >> $GITHUB_PATH
         echo "Added Zig compiler to PATH: ${ZIG_DIR}/bin"
+
+    - name: Zig version
+      shell: bash
+      run: |
+        zig version
