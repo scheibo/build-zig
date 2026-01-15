@@ -65,9 +65,8 @@ runs:
       shell: bash
       run: |
         cd ..
-        git clone https://github.com/ziglang/zig.git
+        git clone https://codeberg.org/ziglang/zig.git
         cd zig
-        git submodule update --init
 
     - name: Apply version patch
       if: steps.cache-zig.outputs.cache-hit != 'true'
