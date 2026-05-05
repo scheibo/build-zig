@@ -17,14 +17,14 @@ runs:
         sudo apt-get update
         sudo apt-get install -y cmake ninja-build libxml2-dev curl
 
-        # Install LLVM 21
+        # Install LLVM 22
         wget https://apt.llvm.org/llvm.sh
         chmod +x llvm.sh
-        sudo ./llvm.sh 21
+        sudo ./llvm.sh 22
         rm llvm.sh
 
-        # Install necessary LLVM 21 development packages
-        sudo apt-get install -y libllvm21 llvm-21-dev libclang-21-dev clang-21 lld-21 liblld-21 liblld-21-dev
+        # Install necessary LLVM 22 development packages
+        sudo apt-get install -y libllvm22 llvm-22-dev libclang-22-dev clang-22 lld-22 liblld-22 liblld-22-dev
 
     - name: Get cache key components
       id: cache-key
@@ -52,13 +52,13 @@ runs:
     #     sudo apt-get update
     #     sudo apt-get install -y cmake ninja-build libxml2-dev curl
 
-    #     # Install LLVM 21
+    #     # Install LLVM 22
     #     wget https://apt.llvm.org/llvm.sh
     #     chmod +x llvm.sh
-    #     sudo ./llvm.sh 21
+    #     sudo ./llvm.sh 22
 
-    #     # Install necessary LLVM 21 development packages
-    #     sudo apt-get install -y libllvm21 llvm-21-dev libclang-21-dev clang-21 lld-21 liblld-21 liblld-21-dev
+    #     # Install necessary LLVM 22 development packages
+    #     sudo apt-get install -y libllvm22 llvm-22-dev libclang-22-dev clang-22 lld-22 liblld-22 liblld-22-dev
 
     - name: Clone Zig repository
       if: steps.cache-zig.outputs.cache-hit != 'true'
