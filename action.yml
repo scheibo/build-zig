@@ -89,7 +89,7 @@ runs:
         cd ../zig
         mkdir -p build
         cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release -GNinja
+        cmake .. -DCMAKE_BUILD_TYPE=Release -DZIG_TARGET_MCPU=baseline -GNinja
 
     - name: Build Zig compiler
       if: steps.cache-zig.outputs.cache-hit != 'true'
